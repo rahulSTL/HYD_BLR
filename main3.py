@@ -11,6 +11,7 @@ from matplotlib.offsetbox import OffsetImage, AnnotationBbox
 
 app = Flask(__name__)
 
+#to generate a line from road center to OFC and label the distance 
 def annonater(lol,y1,y2,xl=2500):
         plt.annotate(
         '',xy=(xl, y1+650), xycoords='data',
@@ -20,6 +21,7 @@ def annonater(lol,y1,y2,xl=2500):
         lol, xy=(xl+3, (y1+y2)/2), xycoords='data',color='Red',fontsize=7
         )
 
+#generates a DataFrame of a particular chainage
 def get_df(x):
     df=pd.read_excel(r'NHAI FINAL SURVEY DATA.xlsx')
     df= df.sort_values(by= "Chainage")
@@ -28,30 +30,31 @@ def get_df(x):
     #print(df)
     return df
 
+#plots the divider lines
 def get_divider(d=300):
     global y_divider1,y_divider2,y
     y_divider1=y+d/2
     y_divider2=y-d/2
     mid_div=(y_divider1+y_divider2)/2
+    #plt.hlines is used to draw the lines
     plt.hlines(y_divider1,x,x+len,linestyles='solid',colors='black',lw=0.85)
     plt.hlines(y_divider2,x,x+len,linestyles='solid',colors='black',lw=0.85)
     plt.hlines(mid_div,x,x+len,linestyles='dashdot',colors='black',lw=0.8)
     #annonater(y_divider1,y_divider2,x+400)
 
 
-
+#plots the road lines on the left and rightside
 def get_road(x,d1=900,d2=900,d3=850):
     df=get_df(x)
+    #to store the distance from road center to OFC
     for i in df.index:
         smthg = df['Executable Offset From RC'][i]
-    # print(smthg)
+
     global y_road1,y_road2
     y_road1=y_divider1+d1
     y_road2=y_divider2-d2
     plt.hlines(y_road1,x,x+len,linestyles='solid',colors='black',lw=0.8)
     plt.hlines(y_road2,x,x+len,linestyles='solid',colors='black',lw=0.8)
-    #annonater(y_road1,y_divider1,x+600)
-    #annonater(y_road2,y_divider2,x+600)
 
     ##Drawing mid-road lines
     plt.hlines(y_divider1+d1/2,x,x+len,linestyles='dashed',colors='#ADD8E6',lw=1)
@@ -62,30 +65,26 @@ def get_road(x,d1=900,d2=900,d3=850):
     annonater(smthg,y_divider2-d2/2,y_divider2-d2/2-d3,x+200)
 
 
-
+#Plot the corners of the road
 def get_roadside(d1=400,d2=620):
     global y_roadside1,y_roadside2
     y_roadside1=y_road1+d1
     y_roadside2=y_road2-d2
     plt.hlines( y_roadside1,x,x+len,linestyles='solid',colors='black',lw=1.5)
-    plt.hlines(y_roadside2,x,x+len,linestyles='solid',colors='black',lw=1.5)
-    #annonater(y_roadside1,y_road1,x+250)    
-    #annonater(y_roadside2,y_road2,x+250)   
+    plt.hlines(y_roadside2,x,x+len,linestyles='solid',colors='black',lw=1.5)  
+
 
 def outer_box(d=30):
-    
     yl=y_roadside1+d
     yr=y_roadside2-d
     plt.hlines(yl,x,x+len,linestyles='solid',colors='white',lw=1.5)
     plt.hlines(yr,x,x+len,linestyles='solid',colors='white',lw=1.5)       
 
+#it will place the objects on the roadside at their respective chainages (Below the OFC line)
 def get_objects_roadside(d,x):
-    #yl=y_roadside1+d
     yr=y_roadside2-3*d
     df=get_df(x) 
     ax = plt.gca()
-    #print(df.index)
-    #print(df,len(df.index))
     for i in df.index: 
         if (pd.isna(df['Observation Detail'][i])) :
             pass
@@ -268,13 +267,13 @@ def get_objects_roadside(d,x):
             xx = df['Chainage'][i]+20
             yy = y_roadside2-d-10
             imagebox1 = OffsetImage(img,zoom=0.08)
-            # imagebox2 = OffsetImage(img1,zoom=0.11)
             imagebox2 = OffsetImage(img1,zoom=0.09)
             ab1 = AnnotationBbox(imagebox1, (xx, yy), frameon = False)
             ab2 = AnnotationBbox(imagebox2, (xx+40, yy), frameon = False)
             ax.add_artist(ab1)
             ax.add_artist(ab2)
   
+#Place the chainage on X-axis
 def get_chainage(d,x):
     df=get_df(x)
     yr=y_roadside2-d
@@ -286,6 +285,7 @@ def get_chainage(d,x):
         else:
             plt.text(float(df['Chainage'][i]),yr1,float(df['Chainage'][i]/1000),fontsize = 6,color='Black')
 
+#Place the culvert at their respective chainage
 def get_culvert(x):
     df=get_df(x)
     ax = plt.gca()
@@ -310,7 +310,8 @@ def get_culvert(x):
             ax.add_artist(a1)
             ax.add_artist(ab2)
             ax.add_artist(a2)
-            
+
+#Place the bridge at their respective chainage      
 def get_bridge(x):
     df=get_df(x)
     ax = plt.gca()
@@ -339,6 +340,7 @@ def get_bridge(x):
             plt.text(tx2-2, ty2-350,df['Crossing Length'][i],fontsize=6)
             ax.add_artist(a2)
 
+#Place the canal at their respective chainage
 def get_canal(x):
     df=get_df(x)
     ax = plt.gca()
@@ -357,6 +359,7 @@ def get_canal(x):
             ax.add_artist(ab1)
             ax.add_artist(ab2)
 
+#Place the road crossing icon at their respective chainage
 def get_road_crossing(x):
     df=get_df(x)
     ax = plt.gca()
@@ -375,6 +378,7 @@ def get_road_crossing(x):
             #ax.add_artist(ab1)
             ax.add_artist(ab2)
 
+#Place the river crossing icon at their respective chainage
 def get_river_crossing(x):
     df=get_df(x)
     ax = plt.gca()
@@ -393,6 +397,7 @@ def get_river_crossing(x):
             ax.add_artist(ab1)
             ax.add_artist(ab2)
 
+#Place the under pass icon at their respective chainage
 def get_under_pass(x):
     df=get_df(x)
     ax = plt.gca()
@@ -411,6 +416,7 @@ def get_under_pass(x):
             ax.add_artist(ab1)
             ax.add_artist(ab2)
 
+#Place the water pipe at their respective chainage
 def get_water_pipe(x):
     df=get_df(x)
     ax = plt.gca()
@@ -427,6 +433,7 @@ def get_water_pipe(x):
             #ax.add_artist(ab1)
             ax.add_artist(ab2)
 
+#Place the rail crossing icon at their respective chainage
 def get_rail_crossing(x):
     df=get_df(x)
     ax = plt.gca()
@@ -445,7 +452,7 @@ def get_rail_crossing(x):
             ax.add_artist(ab1)
             ax.add_artist(ab2)
             
-
+#Place the service road icon at their respective chainage
 def get_serviceroad(x):
     df=get_df(x)
     ax = plt.gca()
@@ -462,40 +469,17 @@ def get_serviceroad(x):
 
             if df['Service Road Side'][i]=="RHS":
                 imagebox2 = OffsetImage(mpimg.imread(r'Culvert2.png'), zoom = 0.15)
-                #i2=OffsetImage(mpimg.imread(r'culvert_part2.png'), zoom = 0.15)
                 ab2 = AnnotationBbox(imagebox2, (tx2, ty2-220), frameon = False)
-                #a2=AnnotationBbox(i2, (tx2, ty2+170), frameon = False)
                 plt.text(tx2+20, ty2-180,"Service Road\nw=",fontsize=5)
                 ax.add_artist(ab2)
-
-def coords(x=1980,y=3100):
-        global len
-        plt.text(x, y, 'N: XXX-XXX-XXX', fontsize = 9)
-        plt.text(x, y-130, 'E: XXX-XXX-XXX', fontsize = 9)
-        plt.text(x+len-5,y, 'N: XXX-XXX-XXX', fontsize = 9)
-        plt.text(x+len-5, y-130, 'E: XXX-XXX-XXX', fontsize = 9)                        
-            
+                     
+#Display the text on plot
 def get_fixed_things(x):
-    #plt.text(x+860,650,"To Mansar>>",fontsize=9,color='Blue' ,weight='bold')
-    #plt.text(x,-550,"<< To Kurai",fontsize=9,color='Blue',weight='bold')
     plt.text(x+250,-550,"<< NH-44 >>",fontsize=7,color='green')
     plt.text(x+800,-550,"<< NH-44 >>",fontsize=7,color='green')
     plt.text(x+750,300,"<< NH-44 >>",fontsize=7,color='green')
     plt.text(x+200,300,"<< NH-44 >>",fontsize=7,color='green')
-    #plt.text(x+500,650,"BT Road",fontsize=6,color='Green')
-    plt.text(x+500,-100,"<<Divider>>",fontsize=6,color='Black')
-    #plt.text(x+700,-550,"BT Road",fontsize=7,color='Green')
-    #plt.text(x+350,1100,"Gravel",fontsize=6,color='Green')
-    #plt.text(x+500,1100,"Gravel",fontsize=6,color='Green')
-    #plt.text(x+900,-1300,"Gravel",fontsize=6,color='Green')
-    #plt.text(x+500,-1300,"Gravel",fontsize=6,color='Green')          
-
-
-
-def get_soil(d,x):
-    df=get_df(x)
-    for i in df.index:
-        plt.text(float(df['Chainage'][i]),y_roadside2-d,df['Strata Type'][i],fontsize = 5,color='Black')
+    plt.text(x+500,-100,"<<Divider>>",fontsize=6,color='Black')        
 
 global y_divider1,y_divider2,y_road1,y_road2,y_roadside1,y_roadside2,x,len,y,ok,d
 # y,x,len=0,375000,1000
@@ -565,13 +549,7 @@ while x < 534720:
     get_fixed_things(x)
     x=x+1000
     fig1 = plt.gcf()
-    #plt.draw()
     plt.axis('off')
-    # mng = plt.get_current_fig_manager()
-    # mng.full_screen_toggle()
-    # plt.get_current_fig_manager().window.state('zoomed')
-    # figManager = plt.get_current_fig_manager()
-    # figManager.window.showMaximized()
     plt.show()
     name_fig="images_sld1/sld"+str(int((x-3000)/1000))
     fig1.savefig(name_fig, dpi=600)
