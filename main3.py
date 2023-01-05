@@ -97,7 +97,7 @@ def get_objects_roadside(d,x):
             imagebox1 = OffsetImage(img,zoom=0.6)
             ab1 = AnnotationBbox(imagebox1, (xx, yy), frameon = False)
             ax.add_artist(ab1)
-        elif df['Observation Detail'][i] == 'TOLL PLAZA KURNOOL' or df['Observation Detail'][i] == 'TOLL PLAZA AMAKATHADU' or df['Observation Detail'][i] == 'TOLL PLAZA KASEPALLI' or df['Observation Detail'][i] == 'TOLL PLAZA KARURU' or df['Observation Detail'][i] == 'TOLL PLAZA BAGEPALLI' or df['Observation Detail'][i] == 'TOLL PLAZA KURNOOL' or df['Observation Detail'][i] == 'TOLL PLAZA RAIKAL' :
+        elif df['Observation Detail'][i] == 'TOLL PLAZA SAKAPUR (Telecom Room)' or df['Observation Detail'][i] == 'TOLL PLAZA AMAKATHADU (Telecom Room)' or df['Observation Detail'][i] == 'TOLL PLAZA KASEPALLI (Telecom Room)' or df['Observation Detail'][i] == 'TOLL PLAZA MARURU (Telecom Room)' or df['Observation Detail'][i] == 'TOLL PLAZA BAGEPALLI (Telecom Room)' or df['Observation Detail'][i] == 'TOLL PLAZA PHULLUR (Telecom Room)':
             path = r"toll plaza.png"
             path1 = r"hut.png"
             img = mpimg.imread(path)
@@ -251,6 +251,29 @@ def get_objects_roadside(d,x):
             imagebox1 = OffsetImage(img,zoom=0.025)
             ab1 = AnnotationBbox(imagebox1, (xx, yy), frameon = False)
             ax.add_artist(ab1)
+        elif df['Observation Detail'][i] == 'Telecom Room':
+            # print('hi')
+            path = r"hutt.png"
+            img = mpimg.imread(path)
+            xx = df['Chainage'][i]+20
+            yy = y_roadside2-d
+            imagebox1 = OffsetImage(img,zoom=0.02)
+            ab1 = AnnotationBbox(imagebox1, (xx, yy), frameon = False)
+            ax.add_artist(ab1)
+        elif df['Observation Detail'][i] == 'TOLL PLAZA RAIKAL (NOC)':
+            path = r"toll plaza.png"
+            path1 = r"noc.png"
+            img = mpimg.imread(path)
+            img1 = mpimg.imread(path1)
+            xx = df['Chainage'][i]+20
+            yy = y_roadside2-d-10
+            imagebox1 = OffsetImage(img,zoom=0.08)
+            # imagebox2 = OffsetImage(img1,zoom=0.11)
+            imagebox2 = OffsetImage(img1,zoom=0.09)
+            ab1 = AnnotationBbox(imagebox1, (xx, yy), frameon = False)
+            ab2 = AnnotationBbox(imagebox2, (xx+40, yy), frameon = False)
+            ax.add_artist(ab1)
+            ax.add_artist(ab2)
   
 def get_chainage(d,x):
     df=get_df(x)
@@ -273,13 +296,14 @@ def get_culvert(x):
 
             imagebox1 = OffsetImage(mpimg.imread(r'Culvert.png'), zoom = 0.15)
             i1=OffsetImage(mpimg.imread(r'culvert_part.png'), zoom = 0.09)
-            ab1 = AnnotationBbox(imagebox1, (tx1, ty1+105), frameon = False)
+            ab1 = AnnotationBbox(imagebox1, (tx1, ty1+150), frameon = False)
             a1=AnnotationBbox(i1, (tx1, ty1-170), frameon = False)
 
             imagebox2 = OffsetImage(mpimg.imread(r'Culvert2.png'), zoom = 0.15)
             i2=OffsetImage(mpimg.imread(r'culvert_part2.png'), zoom = 0.09)
             ab2 = AnnotationBbox(imagebox2, (tx2, ty2-105), frameon = False)
-            a2=AnnotationBbox(i2, (tx2, ty2+170), frameon = False)
+            # a2=AnnotationBbox(i2, (tx2, ty2+170), frameon = False)
+            a2=AnnotationBbox(i2, (tx2, ty2+420), frameon = False)
             plt.text(tx2+13, ty2-360,"Culvert\nL=",fontsize=5)
             plt.text(tx2+23, ty2-400,df['Crossing Length'][i],fontsize=6)
             ax.add_artist(ab1)
@@ -300,12 +324,14 @@ def get_bridge(x):
             imagebox1 = OffsetImage(mpimg.imread(r'bridge_up_new.png'), zoom = 0.15)
             i1=OffsetImage(mpimg.imread(r'Bridge_upper_part.png'), zoom = 0.09)
             ab1 = AnnotationBbox(imagebox1, (tx1, ty1+100), frameon = False)
-            a1=AnnotationBbox(i1, (tx1, ty1-200), frameon = False)
+            a1=AnnotationBbox(i1, (tx1, ty1-250), frameon = False)
 
             imagebox2 = OffsetImage(mpimg.imread(r'bridge_down_new.png'), zoom = 0.15)
             i2=OffsetImage(mpimg.imread(r'Bridge_upper_part2.png'), zoom = 0.09)
             ab2 = AnnotationBbox(imagebox2, (tx2, ty2-150), frameon = False)
-            a2=AnnotationBbox(i2, (tx2, ty2+200), frameon = False)
+            # ab2 = AnnotationBbox(imagebox2, (tx2, ty2-50), frameon = False)
+            # a2=AnnotationBbox(i2, (tx2, ty2+200), frameon = False)
+            a2=AnnotationBbox(i2, (tx2, ty2+480), frameon = False)
             ax.add_artist(ab1)
             ax.add_artist(a1)
             ax.add_artist(ab2)
@@ -473,10 +499,10 @@ def get_soil(d,x):
 
 global y_divider1,y_divider2,y_road1,y_road2,y_roadside1,y_roadside2,x,len,y,ok,d
 # y,x,len=0,375000,1000
-y,x,len=0,22000,1000
+y,x,len=0,202000,1000
 d=0
 
-while x < 30000:
+while x < 534720:
     fig=plt.figure(figsize=(350,153))  
     ax = plt.gca()
     ax.set_xlim(x-190, x+len+190)
@@ -541,8 +567,13 @@ while x < 30000:
     fig1 = plt.gcf()
     #plt.draw()
     plt.axis('off')
+    # mng = plt.get_current_fig_manager()
+    # mng.full_screen_toggle()
+    # plt.get_current_fig_manager().window.state('zoomed')
+    # figManager = plt.get_current_fig_manager()
+    # figManager.window.showMaximized()
     plt.show()
-    name_fig="images_sld/sld"+str(int((x-3000)/1000))
+    name_fig="images_sld1/sld"+str(int((x-3000)/1000))
     fig1.savefig(name_fig, dpi=600)
 
 

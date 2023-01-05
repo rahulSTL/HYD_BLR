@@ -2,14 +2,14 @@ from PIL import Image
 import os
 #Read the two images
 
-img_path=r"C:\Users\rahul.dola\Documents\GitHub\Draw_dif\images_sld"
+img_path=r"C:\Users\sri.krishna\Documents\GitHub\HYD_BLR\images_sld1"
 for i in os.listdir(img_path):
     image1 = Image.open(os.path.join(img_path,i))
     #image1.show()
     # "C:\Users\Aditya.gupta\Desktop\Fun Projects\testing related\static\legend.jpg"
-    image2 = Image.open('static/updated-1.jpg')
-    image3=Image.open('static/sld.png')
-    image4=Image.open('static/stl.png')
+    image2 = Image.open('updated-1.jpg')
+    image3=Image.open('sld.png')
+    image4=Image.open('stl.png')
     #image2.show()
     #resize, first image
     # im = Image.open(r"C:\Users\Admin\Pictures\geeks.png")
@@ -28,6 +28,6 @@ for i in os.listdir(img_path):
     new_image.paste(image2,(image1_size[0]-100,700))
     new_image.paste(image3,(image1_size[0]-5000,200))
     new_image.paste(image4,(image1_size[0]-80,150))
-    fig_name="updated//"+i
+    fig_name="updated1//"+i
     new_image.save(fig_name,"PNG")
     # new_image.show()

@@ -4,13 +4,15 @@ import os
 pdf = FPDF()
 pdf.set_auto_page_break(0)
 
-img_list = [x for x in os.listdir("updated")]
+img_list = [x for x in os.listdir("updated1")]
 
 for img in img_list:
     pdf.add_page()
-    image = "updated\\"+img
-    pdf.image(image,w=200,h=120)
+    image = "updated1\\"+img
+    # surface.set_size(842, 595)
+    pdf.image(image,w=210,h=297)
+    # surface.set_size(842, 595)
 
 
-pdf.output("will_it.pdf")
-print("completed")
+pdf.output("checking.pdf")
+print("compltd")
