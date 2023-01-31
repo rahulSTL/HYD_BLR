@@ -50,6 +50,11 @@ def get_path(object):
     return (path,zoom)    
 
 
+
+def get_crossing(crossing,len):
+    if crossing=="WATER PIPE LINE" and len>0:
+        
+
 df=pd.read_excel(r'NHAI FINAL SURVEY DATA.xlsx')
 df= df.sort_values(by= "Chainage")
 xmin=22000
@@ -128,11 +133,26 @@ for i in range(0,levels):
         yr1=y_roadside2-d-290
         for i in df_filter.index:
             if (pd.isna(df_filter['Observation Detail'][i])) and pd.isna(df_filter['Crossing Type'][i]) :
-                axs[0].text(float(df_filter['Chainage'][i]),yr,float(df_filter['Chainage'][i]/1000),fontsize = 6,color='Black')
+                axs[j].text(float(df_filter['Chainage'][i]),yr,float(df_filter['Chainage'][i]/1000),fontsize = 6,color='Black')
             else:
-                axs[0].text(float(df_filter['Chainage'][i]),yr1,float(df_filter['Chainage'][i]/1000),fontsize = 6,color='Black')
+                axs[j].text(float(df_filter['Chainage'][i]),yr1,float(df_filter['Chainage'][i]/1000),fontsize = 6,color='Black')
 
 
+        for iter in df_filter.index:  
+            crossing=df_filter['Crossing Type'][iter]
+            cross_len=df_filter['Crossing Length'][iter]
+            path1,zoom1,path2,zoom2 = get_crossing(crossing,cross_len)
+
+            img1 = mpimg.imread(path1)
+            img2=mpimg.imread(path2)
+            xx = df['Chainage'][iter]+20
+            yy = y_roadside2-d-10
+            imagebox1 = OffsetImage(img1,zoom1)
+            imagebox2 = OffsetImage(img2,zoom2)
+            ab1 = AnnotationBbox(imagebox1, (xx, yy), frameon = False)
+            ab2 = AnnotationBbox(imagebox2, (xx, yy), frameon = False)
+            axs[j].add_artist(ab1)
+            axs[j].add_artist(ab2)
 
 
 plt.show()
