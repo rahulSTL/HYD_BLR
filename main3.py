@@ -9,7 +9,7 @@ import os
 from matplotlib.offsetbox import OffsetImage, AnnotationBbox
 
 
-app = Flask(__name__)
+# app = Flask(__name__)
 
 #to generate a line from road center to OFC and label the distance 
 def annonater(lol,y1,y2,xl=2500):
@@ -89,7 +89,7 @@ def get_objects_roadside(d,x):
         if (pd.isna(df['Observation Detail'][i])) :
             pass
         elif df['Observation Detail'][i] == 'PETROL PUMP':
-            path = r"petrols.png"
+            path = r"objects/petrols.png"
             img = mpimg.imread(path)
             xx = df['Chainage'][i]+20
             yy = y_roadside2-d-10
@@ -97,8 +97,8 @@ def get_objects_roadside(d,x):
             ab1 = AnnotationBbox(imagebox1, (xx, yy), frameon = False)
             ax.add_artist(ab1)
         elif df['Observation Detail'][i] == 'TOLL PLAZA SAKAPUR (Telecom Room)' or df['Observation Detail'][i] == 'TOLL PLAZA AMAKATHADU (Telecom Room)' or df['Observation Detail'][i] == 'TOLL PLAZA KASEPALLI (Telecom Room)' or df['Observation Detail'][i] == 'TOLL PLAZA MARURU (Telecom Room)' or df['Observation Detail'][i] == 'TOLL PLAZA BAGEPALLI (Telecom Room)' or df['Observation Detail'][i] == 'TOLL PLAZA PHULLUR (Telecom Room)':
-            path = r"toll plaza.png"
-            path1 = r"hut.png"
+            path = r"objects/toll plaza.png"
+            path1 = r"objects/hut.png"
             img = mpimg.imread(path)
             img1 = mpimg.imread(path1)
             xx = df['Chainage'][i]+20
@@ -110,7 +110,7 @@ def get_objects_roadside(d,x):
             ax.add_artist(ab1)
             ax.add_artist(ab2)
         elif df['Observation Detail'][i] == 'BUILDING':
-            path = r"build.png"
+            path = r"objects/build.png"
             img = mpimg.imread(path)
             xx = df['Chainage'][i]+20
             yy = y_roadside2-d-10
@@ -118,7 +118,7 @@ def get_objects_roadside(d,x):
             ab1 = AnnotationBbox(imagebox1, (xx, yy), frameon = False)
             ax.add_artist(ab1)
         elif df['Observation Detail'][i] == 'TREE':
-            path = r"tree.png"
+            path = r"objects/tree.png"
             img = mpimg.imread(path)
             xx = df['Chainage'][i]+20
             yy = y_roadside2-d-10
@@ -126,7 +126,7 @@ def get_objects_roadside(d,x):
             ab1 = AnnotationBbox(imagebox1, (xx, yy), frameon = False)
             ax.add_artist(ab1)
         elif df['Observation Detail'][i] == 'HOTEL':
-            path = r"hotel.png"
+            path = r"objects/hotel.png"
             img = mpimg.imread(path)
             xx = df['Chainage'][i]+20
             yy = y_roadside2-d-10
@@ -134,7 +134,7 @@ def get_objects_roadside(d,x):
             ab1 = AnnotationBbox(imagebox1, (xx, yy), frameon = False)
             ax.add_artist(ab1)
         elif df['Observation Detail'][i] == 'MARKET':
-            path = r"market.png"
+            path = r"objects/market.png"
             img = mpimg.imread(path)
             xx = df['Chainage'][i]+20
             yy = y_roadside2-d-10
@@ -142,7 +142,7 @@ def get_objects_roadside(d,x):
             ab1 = AnnotationBbox(imagebox1, (xx, yy), frameon = False)
             ax.add_artist(ab1)
         elif df['Observation Detail'][i] == 'FARM':
-            path = r"Farms.png"
+            path = r"objects/Farms.png"
             img = mpimg.imread(path)
             xx = df['Chainage'][i]+20
             yy = y_roadside2-d-10
@@ -150,7 +150,7 @@ def get_objects_roadside(d,x):
             ab1 = AnnotationBbox(imagebox1, (xx, yy), frameon = False)
             ax.add_artist(ab1)
         elif df['Observation Detail'][i] == 'FOREST':
-            path = r"forest.png"
+            path = r"objects/forest.png"
             img = mpimg.imread(path)
             xx = df['Chainage'][i]+20
             yy = y_roadside2-d-10
@@ -158,7 +158,7 @@ def get_objects_roadside(d,x):
             ab1 = AnnotationBbox(imagebox1, (xx, yy), frameon = False)
             ax.add_artist(ab1)
         elif df['Observation Detail'][i] == 'HILL':
-            path = r"hill.png"
+            path = r"objects/hill.png"
             img = mpimg.imread(path)
             xx = df['Chainage'][i]+20
             yy = y_roadside2-d-10
@@ -166,7 +166,7 @@ def get_objects_roadside(d,x):
             ab1 = AnnotationBbox(imagebox1, (xx, yy), frameon = False)
             ax.add_artist(ab1)
         elif df['Observation Detail'][i] == 'POND':
-            path = r"pond.png"
+            path = r"objects/pond.png"
             img = mpimg.imread(path)
             xx = df['Chainage'][i]+20
             yy = y_roadside2-d-10
@@ -174,7 +174,7 @@ def get_objects_roadside(d,x):
             ab1 = AnnotationBbox(imagebox1, (xx, yy), frameon = False)
             ax.add_artist(ab1)
         elif df['Observation Detail'][i] == 'LAKE':
-            path = r"pond.png"
+            path = r"objects/pond.png"
             img = mpimg.imread(path)
             xx = df['Chainage'][i]+20
             yy = y_roadside2-d-10
@@ -182,8 +182,8 @@ def get_objects_roadside(d,x):
             ab1 = AnnotationBbox(imagebox1, (xx, yy), frameon = False)
             ax.add_artist(ab1)
         elif df['Observation Detail'][i] == 'HARD ROCK & TREE':
-            path = r"stone.png"
-            path1 = r"tree.png"
+            path = r"objects/stone.png"
+            path1 = r"objects/tree.png"
             img = mpimg.imread(path)
             img1 = mpimg.imread(path1)
             xx = df['Chainage'][i]+20
@@ -195,7 +195,7 @@ def get_objects_roadside(d,x):
             ax.add_artist(ab1)
             ax.add_artist(ab2)
         elif df['Observation Detail'][i] == 'AGRICULTURE LAND':
-            path = r"land.png"
+            path = r"objects/land.png"
             img = mpimg.imread(path)
             xx = df['Chainage'][i]+20
             yy = y_roadside2-d-10
@@ -203,7 +203,7 @@ def get_objects_roadside(d,x):
             ab1 = AnnotationBbox(imagebox1, (xx, yy), frameon = False)
             ax.add_artist(ab1)
         elif df['Observation Detail'][i] == 'WATER BODY':
-            path = r"pond.png"
+            path = r"objects/pond.png"
             img = mpimg.imread(path)
             xx = df['Chainage'][i]+20
             yy = y_roadside2-d-10
@@ -211,7 +211,7 @@ def get_objects_roadside(d,x):
             ab1 = AnnotationBbox(imagebox1, (xx, yy), frameon = False)
             ax.add_artist(ab1)
         elif df['Observation Detail'][i] == 'KRISHNA RIVER':
-            path = r"upper_krishna_river.png"
+            path = r"objects/upper_krishna_river.png"
             img = mpimg.imread(path)
             xx = df['Chainage'][i]+20
             yy = y_roadside2-d+310
@@ -219,7 +219,7 @@ def get_objects_roadside(d,x):
             ab1 = AnnotationBbox(imagebox1, (xx, yy), frameon = False)
             ax.add_artist(ab1)
         elif df['Observation Detail'][i] == 'TEMPLE':
-            path = r"temple.png"
+            path = r"objects/temple.png"
             img = mpimg.imread(path)
             xx = df['Chainage'][i]+20
             yy = y_roadside2-d-10
@@ -227,7 +227,7 @@ def get_objects_roadside(d,x):
             ab1 = AnnotationBbox(imagebox1, (xx, yy), frameon = False)
             ax.add_artist(ab1)
         elif df['Observation Detail'][i] == 'Deep Excavation ':
-            path = r"excavator.png"
+            path = r"objects/excavator.png"
             img = mpimg.imread(path)
             xx = df['Chainage'][i]+20
             yy = y_roadside2-d+30
@@ -235,7 +235,7 @@ def get_objects_roadside(d,x):
             ab1 = AnnotationBbox(imagebox1, (xx, yy), frameon = False)
             ax.add_artist(ab1)
         elif df['Observation Detail'][i] == 'Service Road Under Construction':
-            path = r"serviceroadconst.png"
+            path = r"objects/serviceroadconst.png"
             img = mpimg.imread(path)
             xx = df['Chainage'][i]+20
             yy = y_roadside2-d-10
@@ -243,7 +243,7 @@ def get_objects_roadside(d,x):
             ab1 = AnnotationBbox(imagebox1, (xx, yy), frameon = False)
             ax.add_artist(ab1)
         elif df['Observation Detail'][i] == 'INDUSTRY':
-            path = r"factory.png"
+            path = r"objects/factory.png"
             img = mpimg.imread(path)
             xx = df['Chainage'][i]+20
             yy = y_roadside2-d-10
@@ -252,7 +252,7 @@ def get_objects_roadside(d,x):
             ax.add_artist(ab1)
         elif df['Observation Detail'][i] == 'Telecom Room':
             # print('hi')
-            path = r"hutt.png"
+            path = r"objects/hutt.png"
             img = mpimg.imread(path)
             xx = df['Chainage'][i]+20
             yy = y_roadside2-d
@@ -260,8 +260,8 @@ def get_objects_roadside(d,x):
             ab1 = AnnotationBbox(imagebox1, (xx, yy), frameon = False)
             ax.add_artist(ab1)
         elif df['Observation Detail'][i] == 'TOLL PLAZA RAIKAL (NOC)':
-            path = r"toll plaza.png"
-            path1 = r"noc.png"
+            path = r"objects/toll plaza.png"
+            path1 = r"objects/noc.png"
             img = mpimg.imread(path)
             img1 = mpimg.imread(path1)
             xx = df['Chainage'][i]+20
@@ -294,13 +294,13 @@ def get_culvert(x):
             tx1, ty1 = df['Chainage'][i]+20,y_roadside1
             tx2, ty2 = df['Chainage'][i]+20,y_roadside2
 
-            imagebox1 = OffsetImage(mpimg.imread(r'Culvert.png'), zoom = 0.15)
-            i1=OffsetImage(mpimg.imread(r'culvert_part.png'), zoom = 0.09)
+            imagebox1 = OffsetImage(mpimg.imread(r'objects/Culvert.png'), zoom = 0.15)
+            i1=OffsetImage(mpimg.imread(r'objects/culvert_part.png'), zoom = 0.09)
             ab1 = AnnotationBbox(imagebox1, (tx1, ty1+150), frameon = False)
             a1=AnnotationBbox(i1, (tx1, ty1-170), frameon = False)
 
-            imagebox2 = OffsetImage(mpimg.imread(r'Culvert2.png'), zoom = 0.15)
-            i2=OffsetImage(mpimg.imread(r'culvert_part2.png'), zoom = 0.09)
+            imagebox2 = OffsetImage(mpimg.imread(r'objects/Culvert2.png'), zoom = 0.15)
+            i2=OffsetImage(mpimg.imread(r'objects/culvert_part2.png'), zoom = 0.09)
             ab2 = AnnotationBbox(imagebox2, (tx2, ty2-105), frameon = False)
             # a2=AnnotationBbox(i2, (tx2, ty2+170), frameon = False)
             a2=AnnotationBbox(i2, (tx2, ty2+420), frameon = False)
@@ -322,13 +322,13 @@ def get_bridge(x):
             
             # plt.text(tx2, ty2-500,"Bridge\nL=",fontsize=5)
             # plt.text(tx2+50, ty2-450,df['Crossing Length'][i],fontsize=6)
-            imagebox1 = OffsetImage(mpimg.imread(r'bridge_up_new.png'), zoom = 0.15)
-            i1=OffsetImage(mpimg.imread(r'Bridge_upper_part.png'), zoom = 0.09)
+            imagebox1 = OffsetImage(mpimg.imread(r'objects/bridge_up_new.png'), zoom = 0.15)
+            i1=OffsetImage(mpimg.imread(r'objects/Bridge_upper_part.png'), zoom = 0.09)
             ab1 = AnnotationBbox(imagebox1, (tx1, ty1+100), frameon = False)
             a1=AnnotationBbox(i1, (tx1, ty1-250), frameon = False)
 
-            imagebox2 = OffsetImage(mpimg.imread(r'bridge_down_new.png'), zoom = 0.15)
-            i2=OffsetImage(mpimg.imread(r'Bridge_upper_part2.png'), zoom = 0.09)
+            imagebox2 = OffsetImage(mpimg.imread(r'objects/bridge_down_new.png'), zoom = 0.15)
+            i2=OffsetImage(mpimg.imread(r'objects/Bridge_upper_part2.png'), zoom = 0.09)
             ab2 = AnnotationBbox(imagebox2, (tx2, ty2-150), frameon = False)
             # ab2 = AnnotationBbox(imagebox2, (tx2, ty2-50), frameon = False)
             # a2=AnnotationBbox(i2, (tx2, ty2+200), frameon = False)
@@ -349,10 +349,10 @@ def get_canal(x):
             tx1, ty1 = df['Chainage'][i]+20,y_roadside1
             tx2, ty2 = df['Chainage'][i]+20,y_roadside2
 
-            imagebox1 = OffsetImage(mpimg.imread(r'canals.png'), zoom = 0.05)
+            imagebox1 = OffsetImage(mpimg.imread(r'objects/canals.png'), zoom = 0.05)
             ab1 = AnnotationBbox(imagebox1, (tx1, ty1-150), frameon = False)
 
-            imagebox2 = OffsetImage(mpimg.imread(r'canals.png'), zoom = 0.05)
+            imagebox2 = OffsetImage(mpimg.imread(r'objects/canals.png'), zoom = 0.05)
             ab2 = AnnotationBbox(imagebox2, (tx2, ty2-100), frameon = False)
             plt.text(tx2+18, ty2-450,"Canal\nL=",fontsize=5)
             plt.text(tx2+30, ty2-450,df['Crossing Length'][i],fontsize=6)
@@ -368,10 +368,10 @@ def get_road_crossing(x):
             tx1, ty1 = df['Chainage'][i]+20,y_roadside1
             tx2, ty2 = df['Chainage'][i]+20,y_roadside2
 
-            imagebox1 = OffsetImage(mpimg.imread(r'road_crossing.png'), zoom = 0.07)
+            imagebox1 = OffsetImage(mpimg.imread(r'objects/road_crossing.png'), zoom = 0.07)
             ab1 = AnnotationBbox(imagebox1, (tx1, ty1-150), frameon = False)
 
-            imagebox2 = OffsetImage(mpimg.imread(r'road_crossing.png'), zoom = 0.07)
+            imagebox2 = OffsetImage(mpimg.imread(r'objects/road_crossing.png'), zoom = 0.07)
             ab2 = AnnotationBbox(imagebox2, (tx2, ty2-100), frameon = False)
             plt.text(tx2+18, ty2-450,"road\nL=",fontsize=5)
             plt.text(tx2+30, ty2-450,df['Crossing Length'][i],fontsize=6)
@@ -387,10 +387,10 @@ def get_river_crossing(x):
             tx1, ty1 = df['Chainage'][i]+20,y_roadside1
             tx2, ty2 = df['Chainage'][i]+20,y_roadside2
 
-            imagebox1 = OffsetImage(mpimg.imread(r'river_crossing.png'), zoom = 0.05)
+            imagebox1 = OffsetImage(mpimg.imread(r'objects/river_crossing.png'), zoom = 0.05)
             ab1 = AnnotationBbox(imagebox1, (tx1, ty1-200), frameon = False)
 
-            imagebox2 = OffsetImage(mpimg.imread(r'river_crossing.png'), zoom = 0.05)
+            imagebox2 = OffsetImage(mpimg.imread(r'objects/river_crossing.png'), zoom = 0.05)
             ab2 = AnnotationBbox(imagebox2, (tx2, ty2-180), frameon = False)
             plt.text(tx2+18, ty2-450,"river\nL=",fontsize=5)
             plt.text(tx2+30, ty2-450,df['Crossing Length'][i],fontsize=6)
@@ -406,10 +406,10 @@ def get_under_pass(x):
             tx1, ty1 = df['Chainage'][i]+20,y_roadside1
             tx2, ty2 = df['Chainage'][i]+20,y_roadside2
 
-            imagebox1 = OffsetImage(mpimg.imread(r'under.png'), zoom = 0.04)
+            imagebox1 = OffsetImage(mpimg.imread(r'objects/under.png'), zoom = 0.04)
             ab1 = AnnotationBbox(imagebox1, (tx1, ty1-200), frameon = False)
 
-            imagebox2 = OffsetImage(mpimg.imread(r'under.png'), zoom = 0.04)
+            imagebox2 = OffsetImage(mpimg.imread(r'objects/under.png'), zoom = 0.04)
             ab2 = AnnotationBbox(imagebox2, (tx2, ty2-180), frameon = False)
             plt.text(tx2+18, ty2-450,"underpass\nL=",fontsize=5)
             plt.text(tx2+30, ty2-450,df['Crossing Length'][i],fontsize=6)
@@ -425,10 +425,10 @@ def get_water_pipe(x):
             tx1, ty1 = df['Chainage'][i]+20,y_roadside1
             tx2, ty2 = df['Chainage'][i]+20,y_roadside2
 
-            imagebox1 = OffsetImage(mpimg.imread(r'water_crossing.png'), zoom = 0.11)
+            imagebox1 = OffsetImage(mpimg.imread(r'objects/water_crossing.png'), zoom = 0.11)
             ab1 = AnnotationBbox(imagebox1, (tx1, ty1-200), frameon = False)
 
-            imagebox2 = OffsetImage(mpimg.imread(r'eay.png'), zoom = 0.035)
+            imagebox2 = OffsetImage(mpimg.imread(r'objects/eay.png'), zoom = 0.035)
             ab2 = AnnotationBbox(imagebox2, (tx2, ty2-180), frameon = False)
             #ax.add_artist(ab1)
             ax.add_artist(ab2)
@@ -442,10 +442,10 @@ def get_rail_crossing(x):
             tx1, ty1 = df['Chainage'][i]+20,y_roadside1
             tx2, ty2 = df['Chainage'][i]+20,y_roadside2
 
-            imagebox1 = OffsetImage(mpimg.imread(r'rail.png'), zoom = 0.4)
+            imagebox1 = OffsetImage(mpimg.imread(r'objects/rail.png'), zoom = 0.4)
             ab1 = AnnotationBbox(imagebox1, (tx1, ty1-200), frameon = False)
 
-            imagebox2 = OffsetImage(mpimg.imread(r'rail.png'), zoom = 0.4)
+            imagebox2 = OffsetImage(mpimg.imread(r'objects/rail.png'), zoom = 0.4)
             ab2 = AnnotationBbox(imagebox2, (tx2, ty2-180), frameon = False)
             plt.text(tx2+18, ty2-450,"rail crossing\nL=",fontsize=5)
             plt.text(tx2+30, ty2-450,df['Crossing Length'][i],fontsize=6)
@@ -462,13 +462,13 @@ def get_serviceroad(x):
             tx2, ty2 = df['Chainage'][i]+20,y_road2
 
             if df['Service Road Side'][i]=="LHS":
-                imagebox1 = OffsetImage(mpimg.imread(r'Culvert.png'), zoom = 0.15)
+                imagebox1 = OffsetImage(mpimg.imread(r'objects/Culvert.png'), zoom = 0.15)
                 ab1 = AnnotationBbox(imagebox1, (tx1, ty1+200), frameon = False)
                 plt.text(tx1+20, ty1+120,"Service Road\nw=",fontsize=5)
                 ax.add_artist(ab1)
 
             if df['Service Road Side'][i]=="RHS":
-                imagebox2 = OffsetImage(mpimg.imread(r'Culvert2.png'), zoom = 0.15)
+                imagebox2 = OffsetImage(mpimg.imread(r'objects/Culvert2.png'), zoom = 0.15)
                 ab2 = AnnotationBbox(imagebox2, (tx2, ty2-220), frameon = False)
                 plt.text(tx2+20, ty2-180,"Service Road\nw=",fontsize=5)
                 ax.add_artist(ab2)
@@ -487,7 +487,7 @@ y,x,len=0,202000,1000
 d=0
 
 while x < 534720:
-    fig=plt.figure(figsize=(350,153))  
+    fig=plt.figure(figsize=(100,100))  
     ax = plt.gca()
     ax.set_xlim(x-190, x+len+190)
     plt.subplot(311)
@@ -550,9 +550,9 @@ while x < 534720:
     x=x+1000
     fig1 = plt.gcf()
     plt.axis('off')
-    plt.show()
+    # plt.show()
     name_fig="images_sld1/sld"+str(int((x-3000)/1000))
-    fig1.savefig(name_fig, dpi=600)
+    fig1.savefig(name_fig, dpi=300)
 
 
 
