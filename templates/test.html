@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      body {
+        background-image: url('background.jpg');
+        /* background-image: "road.jpeg"; */
+        background-size: cover;
+        background-repeat: no-repeat;
+      }
+      .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 50px;
+        /* background-color: rgb(190, 136, 35); */
+        background-color: lightgray;
+        padding: 0 20px;
+      }
+      .header h1 {
+        font-size: 20px;
+        font-weight: bold;
+        margin: 0;
+      }
+      .logo {
+        height: 40px;
+      }
+      .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        /* background-color: rgba(255, 180, 180, 0.9); */
+        background-color: rgba(255, 255, 255, 0.8);
+        padding: 20px;
+        border-radius: 10px;
+      }
+      .form-group {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+      }
+      input[type="number"] {
+        width: 200px;
+        height: 30px;
+        margin: 10px;
+        padding: 5px;
+        border-radius: 5px;
+        border: 1px solid gray;
+      }
+      input[type="submit"] {
+        width: 100px;
+        height: 40px;
+        margin: 20px;
+        padding: 5px;
+        margin-left: 160px;
+        border-radius: 5px;
+        border: 1px solid gray;
+        background-color: lightgray;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <h1>NHAI-SLD</h1>
+      <img class="logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Sterlite_Technologies_Limited.png/330px-Sterlite_Technologies_Limited.png" alt="Logo">
+    </div>
+    <div class="container">
+      <form method="post">
+        <div class="form-group">
+          <input type="number" name="n1" placeholder="Enter the Start Value(KM)">
+          <input type="number" name="n2" placeholder="Enter the End Value(KM)">
+        </div>
+        <input type="submit" value="Submit">
+      </form>
+    </div>
+  </body>
+</html>
+<!-- src="https://via.placeholder.com/40x40" -->

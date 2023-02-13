@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      body {
+        background-image: url("https://via.placeholder.com/1500x800");
+        background-size: cover;
+        background-repeat: no-repeat;
+      }
+      .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 50px;
+        background-color: lightgray;
+        padding: 0 20px;
+      }
+      .header h1 {
+        font-size: 20px;
+        font-weight: bold;
+        margin: 0;
+      }
+      .logo {
+        height: 40px;
+      }
+      .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background-color: rgba(255, 255, 255, 0.8);
+        padding: 20px;
+        border-radius: 10px;
+      }
+      input[type="text"] {
+        width: 200px;
+        height: 30px;
+        margin: 10px;
+        padding: 5px;
+        border-radius: 5px;
+        border: 1px solid gray;
+      }
+      input[type="submit"] {
+        width: 100px;
+        height: 40px;
+        margin: 20px;
+        padding: 5px;
+        border-radius: 5px;
+        border: 1px solid gray;
+        background-color: lightgray;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <h1>Header</h1>
+      <img class="logo" src="https://via.placeholder.com/40x40" alt="Logo">
+    </div>
+    <div class="container">
+      <form>
+        <input type="text" placeholder="First Value">
+        <input type="text" placeholder="Second Value">
+        <input type="submit" value="Submit">
+      </form>
+    </div>
+  </body>
+</html>
