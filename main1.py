@@ -7,6 +7,7 @@ import matplotlib.image as mpimg
 import numpy as np
 import os
 from matplotlib.offsetbox import OffsetImage, AnnotationBbox
+import time
 
 
 def annonater(lol,plt,y1,y2,xl):
@@ -149,11 +150,6 @@ def my_form():
          en=request.form["n2"]
         #  df=pd.read_excel(r'NHAI FINAL SURVEY DATA.xlsx')
          df= df.sort_values(by= "Chainage")
-# xmin=22000
-# xmin=22000
-# xmax=535000
-        #  xmin=int(input("Enter the Start Value in KM:"))
-        #  xmax=int(input("Enter the End Value in KM:"))
          xmin=int(st)
          xmax=int(en)
          print("Entered values are:",xmin,xmax)
@@ -267,20 +263,15 @@ def my_form():
                             axs[j].add_artist(ab2)
                     print(levels)
     #  plt.show()
-     plt.savefig(fname= 'images/plot.png')
+     plt.savefig('static/line.png')
+     location='static/line_'+ str(time.time())+'.png'
+     plt.savefig(location)
      
     #  plt.savefig('plot.png', dpi=300,  bbox_inches='tight')
     #  html =<img src="images/plot.png">
     #  HTML(html)
-     return render_template("display.html")
+     return render_template("display.html",image_url=location)
     #  print('<img src="plot.png">')
-# @app.route('/display')
-# def display():
-#     print("Rendering template...")
-#     return render_template('display.html')
-# @app.route('/download')
-# def download_file():
-#     path="images/plot.png"
-#     return send_file(path,as_attachment=True)
+
 if __name__ == '__main__':
    app.run(debug=True)
