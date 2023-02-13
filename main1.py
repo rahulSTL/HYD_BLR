@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template, url_for,jsonify
+from flask import Flask, request,send_file,render_template, url_for,jsonify
 from selenium import webdriver
 from PIL import Image
 from matplotlib import pyplot as plt 
@@ -278,6 +278,9 @@ def my_form():
 # def display():
 #     print("Rendering template...")
 #     return render_template('display.html')
-
+# @app.route('/download')
+# def download_file():
+#     path="images/plot.png"
+#     return send_file(path,as_attachment=True)
 if __name__ == '__main__':
    app.run(debug=True)
