@@ -1,0 +1,26 @@
+
+button {
+    display: block;
+    margin-left: 1000px;
+    margin-top: -400px;
+    text-align: center;
+    background-color: #0f55c6;
+    color: #fff;
+    padding: 10px 30px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  button-container {
+    text-align: right;
+  }
+
+  
+  image{
+    margin-left: 1000px;
+    overflow: scroll;
+  }
+
+  
+  

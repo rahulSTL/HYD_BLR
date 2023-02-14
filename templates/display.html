@@ -2,16 +2,60 @@
 <html>
   <head>
     <title>Display</title>
+    <link rel="stylesheet" type="text/css" href="/static/style.css">
+    <style>
+      body {
+        background-image: url('background.jpg');
+        /* background-image: "road.jpeg"; */
+        background-size: cover;
+        margin: 0;
+        background-repeat: no-repeat;
+      }
+      .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 50px;
+        width: 100%;
+        /* background-color: rgb(190, 136, 35); */
+        background-color: lightgray;
+        /* padding: 0 30px; */
+        padding:10px 20px;
+      }
+      .header h1 {
+        font-size: 20px;
+        font-weight: bold;
+        margin: 0;
+      }
+      .logo {
+        height: 40px;
+        margin-right: 25px;
+      }
+
+     </style>
+
   </head>
   <body>
-    <form method="post">
+    <div class="header">
+      <h1>NHAI-SLD</h1>
+      <img class="logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Sterlite_Technologies_Limited.png/330px-Sterlite_Technologies_Limited.png" alt="Logo">
+    </div>
+    
+     <form method="post">
     <!-- <h1>Not working</h1> -->
-    <div style="width: 80%; margin: 0 0; text-align: center;">
-      <img src="{{ image_url }}" alt="Line image">
+    <div style="width: 80%; margin: 0 0; text-align: center;"  >
+      <img class="image" src="{{ image_url }}" width="700" height="420" alt="Line image">
+      <!-- <a href="{{url_for('download')}}" class="download-link"><i class="fas fa-arrow-down"></i></a> -->
       <br><br><br><br><br>
       
       <br><br><br><br><br><br>
     </div>
     </form>
-  </body>
+    
+<div class="button-container">
+  <a href="{{url_for('download')}}"><button>Download</button></a>
+</div>
+    
+</body>
 </html>
+</html> 

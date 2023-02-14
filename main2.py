@@ -3,7 +3,6 @@ from selenium import webdriver
 from PIL import Image
 from matplotlib import pyplot as plt 
 import pandas as pd
-import os as os
 import matplotlib.image as mpimg
 import numpy as np
 import os
@@ -269,14 +268,11 @@ def my_form():
      location='static/line_'+ str(time.time())+'.png'
      plt.savefig(location)
      return render_template("display.html",image_url=location)
-@app.route('/download')
-def download():
-    filename ='static/line.png'
-    return send_file(filename, as_attachment=True)
-# @app.route('/download')
+    #  print('<img src="plot.png">')
+# app.route('/')
 # def download_file():
-#     filename=location
-#     return send_file(filename, as_attachment=True)
+#     p= location
+#     return send_file(p,as_attachment=True)
 
 if __name__ == '__main__':
    app.run(debug=True)
