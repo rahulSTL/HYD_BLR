@@ -2,7 +2,7 @@
 button {
     display: block;
     margin-left: 1000px;
-    margin-top: -400px;
+    margin-top: -430px;
     text-align: center;
     background-color: #0f55c6;
     color: #fff;
@@ -15,12 +15,20 @@ button {
   button-container {
     text-align: right;
   }
-
-  
-  image{
-    margin-left: 1000px;
+.image{
+    margin-left: -250px;
     overflow: scroll;
-  }
-
+}
+/* .scrollbar{ */
+    /* height: auto; */
+    /* width: auto; */
+    /* border: 0px solid grey; */
+    /* font-family: Georgia, 'Times New Roman', Times, serif; */
+    /* overflow: auto; */
+/* } */
   
-  
+  /* image{
+    /* margin-left: 1000px; */
+    /* margin-left: 80000px; */
+    /* overflow: scroll; */
+  /* } */ 

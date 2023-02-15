@@ -43,8 +43,11 @@
     
      <form method="post">
     <!-- <h1>Not working</h1> -->
-    <div style="width: 80%; margin: 0 0; text-align: center;"  >
-      <img class="image" src="{{ image_url }}" width="700" height="420" alt="Line image">
+    <div style="width: 80%; margin: 0 0; text-align: center;" >
+      {% for image in image_list %}
+		<img src="{{ url_for('static', filename='images/' + image) }}" width ="1000" height ="450" alt="{{ image }}">
+	    {% endfor %}
+      <!-- <img src="{{ image_url }}" width="1000" height="450" alt="Line image"> -->
       <!-- <a href="{{url_for('download')}}" class="download-link"><i class="fas fa-arrow-down"></i></a> -->
       <br><br><br><br><br>
       

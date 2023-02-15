@@ -143,8 +143,8 @@ df= df.sort_values(by= "Chainage")
 xmin=int(input("Enter the Start Value in KM:"))
 xmax=int(input("Enter the End Value in KM:"))
 print("Entered values are:",xmin,xmax)
-levels=(xmax-xmin)/3000
-levels=1
+levels=int((xmax-xmin)/3000)
+# levels=1
 x1=xmin
 print(df['Executable Offset From RC'][0])
 for i in range(0,levels):

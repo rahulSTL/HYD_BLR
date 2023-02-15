@@ -3,7 +3,7 @@ from PIL import Image
 from fpdf import FPDF
 
 # Set the directory containing the images
-image_dir = r"C:\Users\sri.krishna\Documents\GitHub\HYD_BLR\static\images"
+image_dir = r"C:\Users\sri.krishna\Documents\GitHub\HYD_BLR\updated1\\"
 
 # Create a new PDF document
 pdf = FPDF('L', 'mm', (297, 420))
@@ -34,7 +34,7 @@ for file in os.listdir(image_dir):
             pdf.image(os.path.join(image_dir, file), x=0, y=40, w=pdf.w, h=height / width_ratio)
         else:
             pdf.image(os.path.join(image_dir, file), x=0, y=0, w=width / height_ratio, h=pdf.h)
-        print("Process loop in initition phase before adding page",count)
+        print("Process loob in initition phase before adding page",count)
         # Add a new page for the next image
         pdf.add_page()
         print("Process ended for 1 page",count)
@@ -42,4 +42,4 @@ for file in os.listdir(image_dir):
 
 # Save the PDF
 print("Saving started")
-pdf.output(r"C:\Users\sri.krishna\Documents\GitHub\HYD_BLR\static\final.pdf")
+pdf.output(r"C:\Users\sri.krishna\Desktop\final_solution.pdf")

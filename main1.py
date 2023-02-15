@@ -7,9 +7,12 @@ import os as os
 import matplotlib.image as mpimg
 import numpy as np
 import os
+import shutil
 from matplotlib.offsetbox import OffsetImage, AnnotationBbox
 import time
+from fpdf import FPDF
 global location
+global img_dir
 
 def annonater(lol,plt,y1,y2,xl):
         plt.annotate(
@@ -154,8 +157,8 @@ def my_form():
          xmin=int(st)
          xmax=int(en)
          print("Entered values are:",xmin,xmax)
-         levels=(xmax-xmin)/3000
-         levels=1
+         levels=int((xmax-xmin)/3000)
+        #  levels=1
          x1=xmin
          print(df['Executable Offset From RC'][0])
          for i in range(0,levels):
@@ -262,21 +265,33 @@ def my_form():
                         axs[j].add_artist(ab1)
                         if(bit==1):
                             axs[j].add_artist(ab2)
-                    print(levels)
+                location='static/images/line_'+ str(time.time())+'.png'
+                plt.savefig(location)      
+                    # print(levels)
     #  plt.show()
-     plt.savefig('static/line.png')
+    #  plt.savefig('static/line.png')
 
-     location='static/line_'+ str(time.time())+'.png'
-     plt.savefig(location)
-     return render_template("display.html",image_url=location)
+    #  location='static/line_'+ str(time.time())+'.png'
+    #  plt.savefig(location)
+     img_dir = 'static/images' # replace with the path to your image directory
+     image_list = os.listdir(img_dir)
+     return render_template('display.html', image_list=image_list)
+    #  return render_template("display.html",image_url=location)
+
+
 @app.route('/download')
 def download():
-    filename ='static/line.png'
+    # filename ='static/line.png'
+    filename='static/final.pdf'
     return send_file(filename, as_attachment=True)
-# @app.route('/download')
-# def download_file():
-#     filename=location
-#     return send_file(filename, as_attachment=True)
-
+img_dir = 'static/images'    
+for filename in os.listdir(img_dir):
+        file_path = os.path.join(img_dir, filename)
+        try:
+            if os.path.isfile(file_path):
+                os.unlink(file_path)
+        except Exception as e:
+            print(e)
+    # return 'Folder has been emptied.'
 if __name__ == '__main__':
    app.run(debug=True)
