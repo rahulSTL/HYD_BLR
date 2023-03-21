@@ -9,4 +9,6 @@ The main.py contains majorly 3 types of function:
 
 The final out is list of raw-images which are then passed to combiner.py which adds legend, logo and title to the images. The updated images are then combined to form a merged pdf using pdfmaker.py
 
+Sample image output:
 
+![Screenshot 2023-03-21 at 11 45 50 AM](https://user-images.githubusercontent.com/111113768/226531400-2afe05a6-113d-440a-b192-065ed925052b.png)
